@@ -3,6 +3,7 @@ const session = require('express-session');
 const RedisStore = require('connect-redis').default;
 const { createClient } = require('redis');
 const crypto = require('crypto');
+const { error } = require('console');
 
 const app = express();
 

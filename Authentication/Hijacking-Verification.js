@@ -1,4 +1,4 @@
-const { error } = require("node:console");
+    const { error } = require("node:console");
 
 function enforceSessionSecurity(req,res, next){
     if(!req.session || !req.session.userId){

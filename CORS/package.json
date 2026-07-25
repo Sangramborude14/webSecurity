@@ -1,0 +1,14 @@
+{
+  "name": "cors-mini-project",
+  "version": "1.0.0",
+  "description": "Interactive mini-project to learn Same-Origin Policy and CORS",
+  "main": "backend.js",
+  "scripts": {
+    "start:backend": "node backend.js",
+    "start:frontend": "node frontend-server.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.2"
+  }
+}

@@ -5,7 +5,6 @@ const app = express();
 
 const PORT = 3000;
 
-
 app.get('/',(req,res,next) => {
     return res.sendFile(path.join(__dirname,'index.html'));
 })

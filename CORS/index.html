@@ -6,6 +6,41 @@
 </head>
 <body>
     <h1>CORS Learning Lab</h1>
+    <button onclick= {fetchData()}>
+        Fetch data from backend
+    </button>
+    <br>
+    <button onClick= {testPreflight()}>
+        Test Preflight
+    </button>
 
+    <script>
+        async function fetchData(){
+            try{
+                const response = await fetch(`http://localhost:5000/api/data`);
+                const data = await response.json();
+                console.log('Success: ',data);
+            }catch(err){
+                console.error(`Error fetching data`,err);
+            }
+        }
+
+        async function testPreflight() {
+            try {
+                const response = await fetch(`http://localhost:5000/api/preflight`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Custom-Header': 'MySercetValue',
+                    },
+                    body: JSON.stringify({name: 'Sangram'})
+                })
+                const data = await response.json();
+                console.log('PUT sucess: ', data);
+            }catch(err){
+                console.error('Put Error: ',err);
+            }
+        }
+    </script>
 </body>
 </html>

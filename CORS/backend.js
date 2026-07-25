@@ -4,11 +4,20 @@ const app = express();
 const PORT = 5000;
 
 app.get(`/api/data`, (req,res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+
+    
     res.json({message: `Hello from backend`})
 })
 
-app.put(`api/preflight`, (req,res) => {
+app.options('/api/preflight',(req,res) => {
+        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Methods', 'PUT,POST,GET,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Custom-Header');
+    res.sendStatus(204);
+})
+
+app.put(`/api/preflight`, (req,res) => {
     res.setHeader(`Access-Control-Allow-Origin`,'http://localhost:3000');
     res.json({message: `PUT request succesfull`});
 })

@@ -13,6 +13,10 @@
     <button onClick= {testPreflight()}>
         Test Preflight
     </button>
+    <br>
+    <button onclick={testCredentials()}>
+        Test Credential
+    </button>
 
     <script>
         async function fetchData(){
@@ -39,6 +43,18 @@
                 console.log('PUT sucess: ', data);
             }catch(err){
                 console.error('Put Error: ',err);
+            }
+        }
+        async function testCredentials(){
+            try {
+                const response = await fetch('http://localhost:5000/api/credentials', {
+                    method: 'POST',
+                    credentials: 'include', // send cookies/credential cross origin
+                });
+                const data = await response.json();
+                console.log('Credential success: ',data);
+            }catch(err){
+                console.error('credential Error: ',err); 
             }
         }
     </script>

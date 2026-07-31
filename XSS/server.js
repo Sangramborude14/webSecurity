@@ -19,6 +19,14 @@ app.get("/comments",(req,res) => {
 
 app.get("/search",(req,res) => {
     const query = req.query.q || "";
+    const escapedQuery = query
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&alt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039");
+
+
 
     res.send(`
         <!DOCTYPE html>
@@ -36,13 +44,11 @@ app.get("/search",(req,res) => {
         </button>
     </form>
 
-    <h2> Results for: <div id='result'></div></h2>
+    <h2>${escapedQuery}</h2>
 
     <p>No result found.</p>
 </body>
-<script>
-document.getElementById('result').textContent = ${query};
-</script>
+
 </html>
         `)
 })

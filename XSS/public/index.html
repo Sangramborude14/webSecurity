@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Comment Section </h1>
+
+    <form>
+        <input type="text" name="comment" placeholder="Enter comment"/>
+        <button type="submit">Post</button>
+    </form>
+    <h2>Comments</h2>
+    <div id="comments"></div>
+
+<script>
+    async function loadComments(){
+        const response = await fetch("/comments");
+        const comments = await response.json();
+
+        const container = document.getElementById("comments");
+
+        comments.forEach(comment => {
+            container.innerHTML += `
+            <div>
+                ${comment}
+                </div>
+            `;
+        });
+    }
+    loadComments();
+</script>
+</body>
+</html>

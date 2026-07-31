@@ -11,7 +11,7 @@ app.get(`/api/data`, (req,res) => {
 })
 
 app.post(`/api/credentials`, (req,res) => {
-    res.setHeader('Access-Control-Allow-Origin','*');
+    res.setHeader('Access-Control-Allow-Origin','http://localhost:3000');
     res.setHeader('Access-Control-Allow-Credentials',true);
     res.json({message: 'Credential Endpoint Called'});
 })

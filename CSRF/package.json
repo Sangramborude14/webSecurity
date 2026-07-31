@@ -1,0 +1,14 @@
+{
+  "name": "csrf-mini-project",
+  "version": "1.0.0",
+  "description": "Hands-on CSRF demonstration and mitigation lab",
+  "main": "bank-server.js",
+  "scripts": {
+    "start:bank": "node bank-server.js",
+    "start:attacker": "node attacker-server.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.2"
+  }
+}

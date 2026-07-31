@@ -1,0 +1,17 @@
+{
+  "name": "task-manager",
+  "version": "1.0.0",
+  "description": "1. two folders frontend and backend\r 2. frontend is a react app running on PORT 3000 and backend is an express server running on 8000\r 3. user fills the form on frontend and is send back to server using POST request\r 4. the req.body pases this information and saves it and sends it over to another page\r 5. the information is loaded on frontend using GET request",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}

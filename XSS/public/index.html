@@ -8,8 +8,8 @@
 <body>
     <h1> Comment Section </h1>
 
-    <form>
-        <input type="text" name="comment" placeholder="Enter comment"/>
+    <form action="/comment" method="POST">
+        <input type="text" name="comments" placeholder="Enter comment"/>
         <button type="submit">Post</button>
     </form>
     <h2>Comments</h2>
@@ -23,12 +23,10 @@
         const container = document.getElementById("comments");
 
         comments.forEach(comment => {
-            container.innerHTML += `
-            <div>
-                ${comment}
-                </div>
-            `;
-        });
+            const div = document.createElement("div");
+            div.textContent = comment;
+            container.appendChild(div);
+        })
     }
     loadComments();
 </script>

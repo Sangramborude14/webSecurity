@@ -8,6 +8,6 @@ import * as authController from "../controllers/auth.controller";
 authRouter.post("/register", authController.registerPost);
 
 //login POST
-authRouter.post("/login",)
+authRouter.post("/login",authController.loginPost)
 
 export default authRouter;

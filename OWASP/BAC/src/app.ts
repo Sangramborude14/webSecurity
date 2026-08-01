@@ -2,17 +2,23 @@
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import cookieParser from "cookie-parser";
 
 //local
 import authRouter from "./routes/auth.routes";
-
+//app
 export const app = express();
 
+//cookie
+app.use(cookieParser());
+
+//cors
 app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true,
 }))
 
+//helmet
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
@@ -23,6 +29,9 @@ app.use(helmet({
   },
 }));
 
+//json
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// auth route
 app.use("/auth", authRouter);

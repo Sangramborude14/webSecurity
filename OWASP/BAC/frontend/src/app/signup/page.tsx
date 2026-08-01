@@ -46,8 +46,7 @@ export default function RegisterPage(){
                 />
                </div>
                <button type="submit" className='p-2 ml-3 bg-light-500 text-red-500 border border-light-500'>
-                SUBMIT
-               </button>
+               SIGNUP</button>
             </form>
             {message && <p>{message}</p>}
         </div>

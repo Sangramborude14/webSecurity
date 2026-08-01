@@ -4,3 +4,7 @@ CSRF/node_modules
 Task-Manager/node_modules
 XSS/node_modules
 SQL_Injection/node_modules
+OWASP/BAC/node_modules
+OWASP/BAC/.claude
+OWASP/BAC/.agents
+OWASP/BAC/.windsurf

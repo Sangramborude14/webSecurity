@@ -5,6 +5,9 @@ const authRouter = express.Router();
 import * as authController from "../controllers/auth.controller";
 
 //register POST
-authRouter.post("/register",authController.registerPost);
+authRouter.post("/register", authController.registerPost);
+
+//login POST
+authRouter.post("/login",)
 
 export default authRouter;

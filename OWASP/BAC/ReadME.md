@@ -32,3 +32,4 @@ user
 createdAt
 
 npx prisma migrate dev --name init
+create-next-app@latest frontend

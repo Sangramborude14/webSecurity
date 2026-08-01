@@ -1,8 +1,19 @@
 import express from 'express';
+import helmet from 'helmet';
+import authRouter from "./routes/auth.routes";
 
 export const app = express();
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
-app.use("/",(req,res) => {
-    return res.status(200).json({message: "Secure Notes API"})
-})
+
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+    },
+  },
+}));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/auth", authRouter);

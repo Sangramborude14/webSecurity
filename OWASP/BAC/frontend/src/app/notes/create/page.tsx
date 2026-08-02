@@ -9,7 +9,7 @@ const [message,setMessage] = useState('');
 
 const onSubmit = async(e: FormEvent) => {
     try {
-        const response = await fetch("http://localhost:5000/notes",{
+        const response = await fetch("http://localhost:5000/notes/create",{
             method: "POST",
             headers: {"Content-Type": "application/json"},
             credentials: 'include',
@@ -38,7 +38,9 @@ Content: <textarea value={content}  onChange={(e) => setContent(e.target.value)}
 </div>
 <div className="gap-5 flex space-x-6 w-26  border  border-light-100 hover:bg-white hover:scale-110 hover:text-black transition-all ">
     <button onClick={onSubmit} className="text-center pl-3">CREATE</button>
+    {message && <p className="text-light-200">{message}</p>}
 </div>
+
 </div>
 </>)
 

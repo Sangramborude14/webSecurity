@@ -29,12 +29,13 @@ try {
 
    return res
    .status(200)
-   .cookie("token",{
+   .cookie("token", result.token, {
             httpOnly: true,
-            secure: true,
-            sameSite: true,
-            maxAge: 60*60*1000
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            maxAge: 60 * 60 * 1000
          })
+
    .json({
       success: true,
       message: "Login Successfully accepted by server",

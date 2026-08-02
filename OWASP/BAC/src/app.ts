@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 
 //local
 import authRouter from "./routes/auth.routes";
+import { notesRouter } from './routes/notes.routes';
 //app
 export const app = express();
 
@@ -35,3 +36,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // auth route
 app.use("/auth", authRouter);
+
+// notes route
+app.use("/notes", notesRouter);
+

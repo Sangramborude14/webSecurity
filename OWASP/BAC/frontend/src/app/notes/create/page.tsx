@@ -8,6 +8,7 @@ const [content,setContent] = useState('');
 const [message,setMessage] = useState('');
 
 const onSubmit = async(e: FormEvent) => {
+    e.preventDefault();
     try {
         const response = await fetch("http://localhost:5000/notes/create",{
             method: "POST",
@@ -17,13 +18,17 @@ const onSubmit = async(e: FormEvent) => {
         });
 
         const data = await response.json();
-        if(!response.ok){
-            setMessage(data.message);
-            throw new Error('unable to post to server');
+        if (response.ok) {
+            setMessage(data.message || "Note created successfully!");
+            setTitle('');
+            setContent('');
+        } else {
+            setMessage(data.message || 'Unable to post to server');
         }
-    }catch(error:any){
+    } catch(error:any) {
         setMessage(error.message);
     }
+
 }
 
 return(<>

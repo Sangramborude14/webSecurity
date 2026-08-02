@@ -19,12 +19,12 @@ const onSubmit = async (e: React.FormEvent) => {
     const data = await response.json();
 
     if(response.ok){
-        const token = response.token;
-        setMessage(data.message)
-
+        const token = data.token;
+        setMessage(data.message || "Login successful!");
     }else{
         setMessage(data.message || "Login failed")
     }
+
 
     }catch(err:any){
         setMessage(err.message);

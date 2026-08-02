@@ -45,10 +45,11 @@ return(<>
                 </div>
                 <div>
                 <p>{note.content}</p>
+                <a  href={`http://localhost:3000/notes/${note.id}`}>View</a>
                 </div>
             </div>
         ))}
     </div>
 </div>
 </>)
-}
+}

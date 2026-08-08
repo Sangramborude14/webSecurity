@@ -29,7 +29,20 @@ export const createNote = async (req: AuthRequest, res: Response, next: NextFunc
 
 export const viewNoteGet = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
-    const allNotes = await prisma.note.findMany();
+    const user = req.user;
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized: User payload missing",
+      });
+    }
+
+    // ✅ IDOR fix: only return notes owned by the requesting user
+    const allNotes = await prisma.note.findMany({
+      where: { userId: user.userId },
+    });
+
     return res.status(200).json({
       success: true,
       message: "successfully fetched all notes",
@@ -45,13 +58,26 @@ export const viewNoteGet = async (req: AuthRequest, res: Response, next: NextFun
 
 export const getNoteById = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
+    // Fixed the Old IDOR vulnerabiliy
+    // The database would query using id without authentication --> fixed by implementing user check
+    // FindMany was used , which caused Horizontal Privilege Escalation --> fixed by changing to findUnique()
     const id = req.params.id as string;
+    const user = req.user;
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized: User payload missing",
+      });
+    }
+
+    // ✅ IDOR fix: scope the lookup to both id AND the requesting user's id
     const note = await prisma.note.findUnique({
-      where: { id },
+      where: { id, userId: user.userId },
     });
 
-
     if (!note) {
+      // Return 404 (not 403) to avoid leaking whether the note exists at all
       return res.status(404).json({
         success: false,
         message: "Note not found",
@@ -70,4 +96,4 @@ export const getNoteById = async (req: AuthRequest, res: Response, next: NextFun
     });
   }
 };
-
+
